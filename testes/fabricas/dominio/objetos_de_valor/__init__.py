@@ -2,3 +2,4 @@ from testes.fabricas.dominio.objetos_de_valor.fabrica_teste_email import Fabrica
 from testes.fabricas.dominio.objetos_de_valor.fabrica_teste_id import FabricaTesteId
 from testes.fabricas.dominio.objetos_de_valor.fabrica_teste_nome_de_docente import FabricaTesteNomeDeDocente
 from testes.fabricas.dominio.objetos_de_valor.fabrica_teste_nome_generico import FabricaTesteNomeGenerico
+from testes.fabricas.dominio.objetos_de_valor.fabrica_teste_telefone import FabricaTesteTelefone
