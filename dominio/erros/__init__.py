@@ -4,3 +4,4 @@ from dominio.erros.erro_docente_nao_encontrado import ErroDocenteNaoEncontrado
 from dominio.erros.erro_ativar_desativar_docente import ErroAtivarDesativarDocente
 from dominio.erros.erro_email import ErroEmail
 from dominio.erros.erro_telefone import ErroTelefone
+from dominio.erros.erro_tipo_de_contratacao import ErroTipoDeContratacao

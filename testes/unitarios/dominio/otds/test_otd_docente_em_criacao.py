@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from testes.fabricas import FabricaTesteOTDDocenteEmCriacao
 from dominio.otds import OTDDocenteEmCriacao
-from dominio.objetos_de_valor import NomeDeDocente
+from dominio.objetos_de_valor import NomeDeDocente, Id, TipoDeContratacao, Telefone, Email
 
 
 class TestOTDDocenteEmCriacao(TestCase):
@@ -13,10 +13,18 @@ class TestOTDDocenteEmCriacao(TestCase):
 
         atributos_resultantes = [
             docente.nome,
+            docente.email,
+            docente.telefones,
+            docente.tipo_de_contratacao,
+            docente.unidade_senai_id,
             docente.ativo
         ]
         atributos_esperados = [
             NomeDeDocente(otd.nome),
-            True
+            Email(otd.email),
+            [Telefone(telefone) for telefone in otd.telefones],
+            TipoDeContratacao(otd.tipo_de_contratacao),
+            Id(otd.unidade_senai_id),
+            otd.ativo
         ]
         self.assertEqual(atributos_resultantes, atributos_esperados)
