@@ -1,15 +1,13 @@
 from typing import List
 from unittest import TestCase
-from uuid import UUID
 
 import pytest
 
 from aplicacao.models import ModeloUnidadeSenai, ModeloDocente, ModeloTelefone
 from aplicacao.servicos import ServicoConverterModeloDocente
 from dominio.entidades import Docente
-from dominio.objetos_de_valor import Telefone
 from testes.fabricas import FabricaTesteModeloUnidadeSenai, FabricaTesteDocente, FabricaTesteModeloDocente, \
-    FabricaTesteModeloTelefone, FabricaTesteTelefone
+    FabricaTesteModeloTelefone
 
 
 @pytest.mark.django_db
