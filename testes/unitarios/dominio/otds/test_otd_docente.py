@@ -34,6 +34,7 @@ class TestOTDDocente(TestCase):
 
     def test_de_entidade_QUANDO_entidade_informada_ENTAO_retorna_otd_esperado(self) -> None:
         docente: Docente = FabricaTesteDocente.build()
+        print(docente.unidade_senai_id)
 
         otd = OTDDocente.de_entidade(docente)
 

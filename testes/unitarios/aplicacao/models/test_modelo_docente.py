@@ -1,25 +1,35 @@
+import json
 from uuid import UUID
 from django.test import TestCase
 
-from testes.fabricas import FabricaTesteDocente, FabricaTesteModeloDocente
-from aplicacao.models import ModeloDocente
+from testes.fabricas import FabricaTesteDocente, FabricaTesteModeloDocente, FabricaTesteModeloUnidadeSenai
+from aplicacao.models import ModeloDocente, ModeloUnidadeSenai
 from dominio.entidades import Docente
 
 
 class TestModeloDocente(TestCase):
     def test_de_entidade_QUANDO_entidade_fornecida_ENTAO_retorna_modelo_com_atributos_esperados(self) -> None:
         docente: Docente = FabricaTesteDocente.build()
+        modelo_unidade_senai: ModeloUnidadeSenai = FabricaTesteModeloUnidadeSenai.build()
 
-        modelo_docente = ModeloDocente.de_entidade(docente)
+        modelo_docente = ModeloDocente.de_entidade(entidade=docente, unidade_senai=modelo_unidade_senai)
 
         atributos_resultantes = [
             modelo_docente.id,
             modelo_docente.nome,
+            modelo_docente.email,
+            modelo_docente.telefones,
+            modelo_docente.unidade_senai,
+            modelo_docente.tipo_de_contratacao,
             modelo_docente.ativo
         ]
         atributos_esperados = [
             docente.id.valor,
             docente.nome.valor,
+            docente.email.valor,
+            json.dumps([telefone.valor for telefone in docente.telefones]),
+            modelo_unidade_senai,
+            docente.tipo_de_contratacao.valor.value,
             docente.ativo
         ]
         self.assertEqual(atributos_resultantes, atributos_esperados)

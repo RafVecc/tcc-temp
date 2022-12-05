@@ -15,18 +15,18 @@ class ModeloDocente(models.Model):
     email = models.EmailField()
     telefones = models.CharField(max_length=200)
     tipo_de_contratacao = models.CharField(max_length=200)
-    unidade_senai_id = models.ForeignKey(ModeloUnidadeSenai, on_delete=models.CASCADE)
+    unidade_senai = models.ForeignKey(ModeloUnidadeSenai, on_delete=models.CASCADE)
     ativo = models.BooleanField()
 
     @classmethod
-    def de_entidade(cls, entidade: Docente) -> ModeloDocente:
+    def de_entidade(cls, entidade: Docente, unidade_senai: ModeloUnidadeSenai) -> ModeloDocente:
         return cls(
             nome=entidade.nome.valor,
             id=entidade.id.valor,
             email=entidade.email.valor,
-            telefone=json.dumps([telefone.valor for telefone in entidade.telefones]),
+            telefones=json.dumps([telefone.valor for telefone in entidade.telefones]),
             tipo_de_contratacao=entidade.tipo_de_contratacao.valor.value,
-            unidade_senai_id=entidade.unidade_senai_id.valor,
+            unidade_senai=unidade_senai,
             ativo=entidade.ativo
         )
 
@@ -34,9 +34,9 @@ class ModeloDocente(models.Model):
         return Docente.construir(
             nome=str(self.nome),
             id_=UUID(str(self.id)),
-            email=str(),
-            telefones=json.loads(str(self.telefones)),
+            email=self.email,
+            telefones=self.telefones,
             tipo_de_contratacao=str(self.tipo_de_contratacao),
-            unidade_senai_id=UUID(str(self.unidade_senai_id)),
+            unidade_senai_id=self.unidade_senai.id,
             ativo=bool(self.ativo)
         )
