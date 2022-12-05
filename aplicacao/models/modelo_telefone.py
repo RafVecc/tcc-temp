@@ -6,5 +6,5 @@ from aplicacao.models.modelo_docente import ModeloDocente
 
 
 class ModeloTelefone(models.Model):
-    numero: models.CharField(max_length=14)
-    docente: models.ForeignKey(ModeloDocente, on_delete=models.CASCADE)
+    numero = models.CharField(primary_key=True, max_length=14)
+    docente = models.ForeignKey(ModeloDocente, on_delete=models.CASCADE)
