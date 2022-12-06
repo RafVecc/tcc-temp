@@ -35,7 +35,7 @@ class TestRepositorioDocente(TestCase):
 
     def test_salvar_QUANDO_docente_informado_ENTAO_salva_docente(self) -> None:
         modelo_unidade_senai: ModeloUnidadeSenai = FabricaTesteModeloUnidadeSenai.create()
-        docente = FabricaTesteDocente.build(unidade_senai_id=modelo_unidade_senai.id)
+        docente = FabricaTesteDocente.build(unidade_senai_id=Id(modelo_unidade_senai.id))
 
         self.repositorio_docente.salvar(docente)
 
@@ -46,7 +46,7 @@ class TestRepositorioDocente(TestCase):
         modelo_unidade_senai: ModeloUnidadeSenai = FabricaTesteModeloUnidadeSenai.create()
         docente: Docente = FabricaTesteDocente.build(
             telefones=[Telefone(telefone) for telefone in telefones_novos],
-            unidade_senai_id=modelo_unidade_senai.id
+            unidade_senai_id=Id(modelo_unidade_senai.id)
         )
         modelo_docente = FabricaTesteModeloDocente.create(
             id=docente.id.valor,

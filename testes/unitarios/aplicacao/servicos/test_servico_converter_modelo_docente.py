@@ -6,6 +6,7 @@ import pytest
 from aplicacao.models import ModeloUnidadeSenai, ModeloDocente, ModeloTelefone
 from aplicacao.servicos import ServicoConverterModeloDocente
 from dominio.entidades import Docente
+from dominio.objetos_de_valor import Id
 from testes.fabricas import FabricaTesteModeloUnidadeSenai, FabricaTesteDocente, FabricaTesteModeloDocente, \
     FabricaTesteModeloTelefone
 
@@ -14,7 +15,7 @@ from testes.fabricas import FabricaTesteModeloUnidadeSenai, FabricaTesteDocente,
 class TestServicoConverterModeloDocente(TestCase):
     def test_de_entidade_QUANDO_entidade_fornecida_ENTAO_retorna_modelo_com_atributos_esperados(self) -> None:
         modelo_unidade_senai: ModeloUnidadeSenai = FabricaTesteModeloUnidadeSenai.create()
-        docente: Docente = FabricaTesteDocente.build(unidade_senai_id=modelo_unidade_senai.id)
+        docente: Docente = FabricaTesteDocente.build(unidade_senai_id=Id(modelo_unidade_senai.id))
 
         modelo_docente = ServicoConverterModeloDocente.de_entidade(entidade=docente)
 

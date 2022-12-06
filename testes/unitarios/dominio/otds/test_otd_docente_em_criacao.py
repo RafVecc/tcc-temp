@@ -17,7 +17,6 @@ class TestOTDDocenteEmCriacao(TestCase):
             docente.telefones,
             docente.tipo_de_contratacao,
             docente.unidade_senai_id,
-            docente.ativo
         ]
         atributos_esperados = [
             NomeDeDocente(otd.nome),
@@ -25,6 +24,5 @@ class TestOTDDocenteEmCriacao(TestCase):
             [Telefone(telefone) for telefone in otd.telefones],
             TipoDeContratacao(otd.tipo_de_contratacao),
             Id(otd.unidade_senai_id),
-            otd.ativo
         ]
         self.assertEqual(atributos_resultantes, atributos_esperados)

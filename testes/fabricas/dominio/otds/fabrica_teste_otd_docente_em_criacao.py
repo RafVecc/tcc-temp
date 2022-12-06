@@ -13,6 +13,5 @@ class FabricaTesteOTDDocenteEmCriacao(factory.Factory):
     nome = factory.Faker('name')
     email = factory.Faker('email')
     telefones = factory.List([GerarTelefone.gerar() for _ in range(3)])
-    tipo_de_contratacao = fuzzy.FuzzyChoice([opcao for opcao in TipoDeContratacaoEnum])
-    unidade_senai_id = factory.Faker('uuid4', cast_to=None)
-    ativo = factory.Faker('boolean')
+    tipo_de_contratacao = fuzzy.FuzzyChoice([opcao.value for opcao in TipoDeContratacaoEnum])
+    unidade_senai_id = factory.Faker('uuid4')

@@ -7,7 +7,7 @@ from dominio.entidades import Docente
 class ServicoConverterModeloDocente:
     @staticmethod
     def de_entidade(entidade: Docente) -> ModeloDocente:
-        unidade_senai = ModeloUnidadeSenai.objects.get(pk=entidade.unidade_senai_id)
+        unidade_senai = ModeloUnidadeSenai.objects.get(pk=entidade.unidade_senai_id.valor)
         return ModeloDocente(
             nome=entidade.nome.valor,
             id=entidade.id.valor,
